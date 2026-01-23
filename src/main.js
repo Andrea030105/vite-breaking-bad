@@ -2,9 +2,6 @@ import { createApp } from "vue";
 import App from "./App.vue";
 
 // Importa CSS di Bootstrap
-import axios from "axios";
-
-// Importa CSS di Bootstrap
 import "bootstrap/dist/css/bootstrap.min.css";
 
 // Importa JavaScript di Bootstrap (opzionale, solo se usi componenti interattivi)
