@@ -1,13 +1,17 @@
 <script>
 import axios from 'axios';
+
 import AppHeader from './components/AppHeader.vue';
 import AppContent from './components/AppContent.vue';
+import Loader from './components/Loader.vue';
+
 import { store } from './store';
 
 export default {
   components: {
     AppHeader,
     AppContent,
+    Loader,
   },
   data() {
     return {
@@ -21,14 +25,22 @@ export default {
     getYoGoCard() {
       axios.get(store.url).then((response) => {
         store.dataCard = response.data.data
+        setTimeout(() => {
+          store.isloaded = true;
+        }, 3000)
       })
     }
   },
 }
 </script>
 <template>
-  <AppHeader />
-  <AppContent />
+  <div v-if="store.isloaded">
+    <AppHeader />
+    <AppContent />
+  </div>
+  <div v-else>
+    <Loader />
+  </div>
 </template>
 <style lang="scss">
 @use './styles/generals.scss' as *;
