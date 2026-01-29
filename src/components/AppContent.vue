@@ -1,6 +1,8 @@
 <script>
 import { store } from '../store';
+
 import Card from './Card.vue';
+
 export default {
     components: {
         Card,
@@ -14,13 +16,13 @@ export default {
 </script>
 <template>
     <section class="main-section">
-        <div class="container">
+        <div class="container pb-3">
             <div class="row">
                 <div class="col">
                     <div class="container-list-card mt-5 p-4">
                         <div class="fonud-card p-2">
                             <h1>
-                                Foun card 0
+                                Foun card {{ store.dataCard.length }}
                             </h1>
                         </div>
                     </div>

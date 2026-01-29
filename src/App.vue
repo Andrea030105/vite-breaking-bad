@@ -4,6 +4,7 @@ import axios from 'axios';
 import AppHeader from './components/AppHeader.vue';
 import AppContent from './components/AppContent.vue';
 import Loader from './components/Loader.vue';
+import SelectType from './components/SelectType.vue';
 
 import { store } from './store';
 
@@ -12,6 +13,7 @@ export default {
     AppHeader,
     AppContent,
     Loader,
+    SelectType,
   },
   data() {
     return {
@@ -29,13 +31,21 @@ export default {
           store.isloaded = true;
         }, 3000)
       })
+    },
+    showSelect() {
+      let newUrl = 'https://db.ygoprodeck.com/api/v7/cardinfo.php?archetype=' + store.selectedType
+
+      axios.get(newUrl).then((response) => {
+        store.dataCard = response.data.data
+      })
     }
-  },
+  }
 }
 </script>
 <template>
   <div v-if="store.isloaded">
     <AppHeader />
+    <SelectType @select="showSelect" />
     <AppContent />
   </div>
   <div v-else>

@@ -30,7 +30,7 @@ export default {
         height: 120px;
         animation: spin 2s linear infinite;
         position: absolute;
-        top: 50%;
+        top: 45%;
         left: 45%;
     }
 
