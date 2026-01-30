@@ -25,27 +25,23 @@ export default {
   },
   methods: {
     getYoGoCard() {
-      axios.get(store.url).then((response) => {
+
+      let newUrl = 'https://db.ygoprodeck.com/api/v7/cardinfo.php?archetype=' + store.selectedType
+
+      axios.get(newUrl).then((response) => {
         store.dataCard = response.data.data
         setTimeout(() => {
           store.isloaded = true;
         }, 3000)
       })
     },
-    showSelect() {
-      let newUrl = 'https://db.ygoprodeck.com/api/v7/cardinfo.php?archetype=' + store.selectedType
-
-      axios.get(newUrl).then((response) => {
-        store.dataCard = response.data.data
-      })
-    }
   }
 }
 </script>
 <template>
   <div v-if="store.isloaded">
     <AppHeader />
-    <SelectType @select="showSelect" />
+    <SelectType @select="getYoGoCard" />
     <AppContent />
   </div>
   <div v-else>
